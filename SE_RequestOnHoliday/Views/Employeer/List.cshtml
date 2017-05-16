@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SE_RequestOnHoliday.ViewModel.EmployeerVM>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New","Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last name</th>
+            <th>Requsest</th>
+            <th>Details</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    
+    @foreach (SE_RequestOnHoliday.ViewModel.EmployeerVM b in Model)
+    {
+        <tr>
+            <td>@b.Id</td>
+            <td>@b.FirstName</td>
+            <td>@b.LastName</td>
+            <td>get Request </td>
+            <td>Details</td>
+            <td>
+                @Html.ActionLink("Edit","Edit", new { id= b.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = b.Id })
+            </td>
+            <td></td>
+        </tr>
+    }
+</table>
+
+
+

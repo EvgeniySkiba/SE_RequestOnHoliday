@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SE_RequestOnHoliday.ViewModel.RestVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Данные по сотруднику</h2>
+
+
+@Html.ActionLink("your logo here.","Index", "Employeer")
+<br/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>@item.Id</tr>
+            <tr>@item.Name</tr>
+            <tr>@item.StartDate</tr>
+            <tr>@item.EndDate</tr>
+        }
+    </tbody>
+</table>

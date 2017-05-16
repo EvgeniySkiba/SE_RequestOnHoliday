@@ -1,0 +1,76 @@
+
+create database personal
+
+CREATE TABLE [dbo].[Roles]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Name] NVARCHAR (50) NOT NULL
+)
+------------------------------
+insert into Roles values ('User')
+insert into Roles values ('HR')
+insert into Roles values ('Admin')
+
+CREATE TABLE [dbo].[RestType]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[Name] NVARCHAR (50) NOT NULL
+)
+
+insert into Roles values ('Ежегодный')
+insert into Roles values ('Внеочередной')
+insert into Roles values ('За свой счет')
+
+CREATE TABLE [dbo].[Employer]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [FirtstName] NVARCHAR(100) NOT NULL, 
+    [LastName] NVARCHAR(100) NOT NULL, 
+    [Login] NVARCHAR(50) NOT NULL, 
+    [Password] NVARCHAR(50) NOT NULL,
+    [RoleId] INT NOT NULL,
+	CONSTRAINT [Ff_Employer_ToRoles] Foreign Key ([RoleId]) References [Roles](Id),
+
+)
+
+CREATE TABLE [dbo].[Rest]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [StartDate] SMALLDATETIME NOT NULL, 
+    [EndDate] SMALLDATETIME NOT NULL, 
+    [Status] INT NOT NULL 
+)
+
+
+CREATE TABLE [dbo].[EmployeesRest](
+	[EmployerID] [int] NOT NULL,
+	[RestID] [int] NOT NULL,
+ CONSTRAINT [PK_EmployeesRest] PRIMARY KEY CLUSTERED 
+(
+	[EmployerID] ASC,
+	[RestID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[EmployeesRest]  WITH CHECK ADD  CONSTRAINT [FK_EmployeesRest_Employee] FOREIGN KEY([EmployerID])
+REFERENCES [dbo].[Employer] ([Id])
+GO
+
+ALTER TABLE [dbo].[EmployeesRest] CHECK CONSTRAINT [FK_EmployeesRest_Employee]
+GO
+
+ALTER TABLE [dbo].[EmployeesRest]  WITH CHECK ADD  CONSTRAINT [FK_EmployeesRest_Rest] FOREIGN KEY([RestID])
+REFERENCES [dbo].[Rest] ([id])
+GO
+
+
+
+ALTER TABLE [dbo].[EmployeesRest] CHECK CONSTRAINT [FK_EmployeesRest_Rest]
+GO
+
+
+-------------------------------
+-- update-package -reinstall
+--------------------------------------
