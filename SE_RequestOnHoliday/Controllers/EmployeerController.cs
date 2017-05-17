@@ -69,8 +69,11 @@ namespace SE_RequestOnHoliday.Controllers
         }
 
         // GET: Employeer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
+
             EmployeerVM empl = (from p in db.Employers
                                 where p.Id == id
                                 select new EmployeerVM
@@ -79,6 +82,9 @@ namespace SE_RequestOnHoliday.Controllers
                                     FirstName = p.FirtstName,
                                     LastName = p.LastName
                                 }).FirstOrDefault();
+
+            if (empl == null)
+                return HttpNotFound();
 
             return View(empl);
         }

@@ -227,6 +227,7 @@
     <Content Include="Views\Employeer\Details.cshtml" />
     <Content Include="Views\Employeer\getRequest.cshtml" />
     <Content Include="Views\HR\ChangeStatus.cshtml" />
+    <Content Include="Views\HR\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\" />

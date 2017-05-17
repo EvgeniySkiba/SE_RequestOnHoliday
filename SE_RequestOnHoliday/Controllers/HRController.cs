@@ -70,11 +70,14 @@ namespace SE_RequestOnHoliday.Controllers
                 rest.Status = Status;
                 db.Entry(rest).State = EntityState.Modified;
                 db.SaveChanges();
-            }
-
-            
+            }           
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult About()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)
