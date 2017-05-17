@@ -55,7 +55,8 @@ namespace SE_RequestOnHoliday.Controllers
                                              Status = c.Status
                                          }).FirstOrDefault();
 
-                
+
+
             return View(currentStatus);
         }
 
@@ -70,6 +71,8 @@ namespace SE_RequestOnHoliday.Controllers
                 db.Entry(rest).State = EntityState.Modified;
                 db.SaveChanges();
             }
+
+            
 
             return RedirectToAction("Index");
         }
