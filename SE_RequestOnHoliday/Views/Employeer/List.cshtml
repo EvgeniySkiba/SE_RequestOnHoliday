@@ -33,9 +33,11 @@
             <td>Details</td>
             <td>
                 @Html.ActionLink("Edit","Edit", new { id= b.Id })
+                </td>
+            <td>
                 @Html.ActionLink("Delete", "Delete", new { id = b.Id })
             </td>
-            <td></td>
+           
         </tr>
     }
 </table>
