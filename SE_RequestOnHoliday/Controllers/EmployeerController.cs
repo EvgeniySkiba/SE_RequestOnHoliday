@@ -193,7 +193,7 @@ namespace SE_RequestOnHoliday.Controllers
 
         }
 
-        public JsonResult IsNumberEven(String userName)
+        public JsonResult isLoginExistInDataBase(String userName)
         {
             return Json(repo.isLoginAvailable(userName), JsonRequestBehavior.AllowGet);
         }

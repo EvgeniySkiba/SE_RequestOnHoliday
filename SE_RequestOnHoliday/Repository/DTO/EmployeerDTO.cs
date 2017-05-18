@@ -30,7 +30,7 @@ namespace SE_RequestOnHoliday.Repository.DTO
         public virtual int RoleId { get; set; }
 
         [Required]
-        [Remote("IsNumberEven", "EmployeerController", ErrorMessage = "В базе данных уже есть запсить с таким логином.")]
+        [Remote("isLoginExistInDataBase", "Employeer", ErrorMessage = "В базе данных уже есть запсить с таким логином.")]
         [StringLength(50)]
 
         [Display(Name = "Логин")]
