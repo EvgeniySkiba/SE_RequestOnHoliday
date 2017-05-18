@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model SE_RequestOnHoliday.Repository.DTO.EmployeerDTO
+
+<h2>Удаление книги</h2>
+<dl>
+    <dt>Название</dt>
+    <dd>
+        @Html.DisplayFor(model => model.FirtstName)
+    </dd>
+
+    <dt>Автор</dt>
+    
+</dl>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Удалить" />
+}

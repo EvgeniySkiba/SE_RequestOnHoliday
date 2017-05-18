@@ -1,14 +1,15 @@
-﻿@model  SE_RequestOnHoliday.Models.RequestVM
+﻿@model  SE_RequestOnHoliday.Repository.DTO.UsersRequestsDTO
 
 @{
     ViewBag.Title = "getRequest";
-    Model.login = ViewBag.Login;
+    var id = ViewBag.ID;
+   
 }
 
 <h2>Создание заявки </h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Apply", "Employeer", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -17,8 +18,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
-        @Html.HiddenFor(model => model.login)
 
+        <input type="hidden" id="EmployerID" name="EmployerID" value="@ViewBag.ID">
+    
         <div class="form-group">
             @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

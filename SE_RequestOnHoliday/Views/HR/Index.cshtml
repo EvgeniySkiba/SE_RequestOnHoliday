@@ -17,19 +17,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+      
             @foreach (var item in Model)
             {
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.StartDate</td>
-                <td>@item.EndDate</td>
-                <td>@item.Status</td>
-                
-                <td>
-                    @Html.ActionLink("ChangeStatus", "ChangeStatus", new { id = item.Id }) 
-                </td>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.EndDate</td>
+                    <td>@item.Status</td>
+
+                    <td>
+                        @Html.ActionLink("ChangeStatus", "ChangeStatus", new { id = item.Id })
+                    </td>
+                </tr>
             }
-        </tr>
+        
     </tbody>
 </table>

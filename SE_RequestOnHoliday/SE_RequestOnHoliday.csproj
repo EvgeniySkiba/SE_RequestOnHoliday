@@ -164,21 +164,34 @@
     <Compile Include="Controllers\EmployeerController.cs" />
     <Compile Include="Controllers\HRController.cs" />
     <Compile Include="Enums\RestType.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\EmployersContext.cs" />
-    <Compile Include="Models\RequestVM.cs" />
     <Compile Include="Models\Rest.cs" />
     <Compile Include="Models\RestType.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\RestOnHolidayRoleProvider.cs" />
-    <Compile Include="ViewModel\ChangeStatus.cs" />
+    <Compile Include="Repository\Abstract\IAuthRepository.cs" />
+    <Compile Include="Repository\Abstract\IEmployeeRepository.cs" />
+    <Compile Include="Repository\Abstract\IRestHolidayRepository.cs" />
+    <Compile Include="Repository\Abstract\IRoleRepository.cs" />
+    <Compile Include="Repository\Concrete\AuthRepository.cs" />
+    <Compile Include="Repository\Concrete\EmployeerRepository.cs" />
+    <Compile Include="Repository\Concrete\RestHolidayRepository.cs" />
+    <Compile Include="Repository\Concrete\RoleRepository.cs" />
+    <Compile Include="Repository\DTO\EmployeerRestDTO.cs" />
+    <Compile Include="Repository\DTO\RestDTO.cs" />
+    <Compile Include="Repository\DTO\UsersRequestsDTO.cs" />
+    <Compile Include="Repository\DTO\EmployeerDTO.cs" />
+    <Compile Include="Repository\DTO\EmployersListItemDTO.cs" />
+    <Compile Include="Repository\DTO\RoleDTO.cs" />
     <Compile Include="ViewModel\EmployeerVM.cs" />
-    <Compile Include="ViewModel\Login.cs" />
-    <Compile Include="ViewModel\NewRestDTO.cs" />
+    <Compile Include="Repository\DTO\LoginDTO.cs" />
     <Compile Include="ViewModel\RestVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,13 +238,14 @@
     <Content Include="Views\Employeer\List.cshtml" />
     <Content Include="Views\Employeer\Create.cshtml" />
     <Content Include="Views\Employeer\Details.cshtml" />
-    <Content Include="Views\Employeer\getRequest.cshtml" />
+    <Content Include="Views\Employeer\Apply.cshtml" />
     <Content Include="Views\HR\ChangeStatus.cshtml" />
     <Content Include="Views\HR\About.cshtml" />
+    <Content Include="Views\Employeer\Edit.cshtml" />
+    <Content Include="Views\Employeer\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAO\" />
-    <Folder Include="Extensions\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Manager\" />
   </ItemGroup>

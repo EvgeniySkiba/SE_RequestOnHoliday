@@ -1,16 +1,17 @@
-﻿@model IEnumerable<SE_RequestOnHoliday.ViewModel.RestVM>
+﻿@using SE_RequestOnHoliday.ViewModel
+@model  IEnumerable<RestVM>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index";   
 }
 
 <h2>Данные по сотруднику</h2>
 
 
-@Html.ActionLink("your logo here.","Index", "Employeer")
-<br/>
+@Html.ActionLink("Подать заявку", "Apply", "Employeer", new { id = @ViewBag.EmployeerID },new {  @class="btn"})
 
-<table class="table">
+
+@*<table class="table">
     <thead>
         <tr>
             <th>Id</th>
@@ -28,4 +29,4 @@
             <tr>@item.EndDate</tr>
         }
     </tbody>
-</table>
+</table>*@

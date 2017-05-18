@@ -1,4 +1,6 @@
 ﻿using SE_RequestOnHoliday.Models;
+using SE_RequestOnHoliday.Repository.Abstract;
+using SE_RequestOnHoliday.Repository.Concrete;
 using SE_RequestOnHoliday.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,66 +13,47 @@ namespace SE_RequestOnHoliday.Controllers
 {
     public class AuthController : Controller
     {
+        IAuthRepository repo;
+
+        public AuthController()
+        {
+            repo = new AuthRepository();
+        }
         [AllowAnonymous]
         // GET: Auth
         public ActionResult Login(string returnUrl)
         {
-            LoginVM loginVM = new LoginVM();
-            ViewBag.ReturnUrl = returnUrl;
-            return View(loginVM);
+
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginVM login, string returnUrl)
+        public ActionResult Login(LoginDTO login, string returnUrl)
         {
 
             if (ModelState.IsValid)
             {
-                if (ValidateUser(login.UserName, login.Password))
+                if (repo.ValidateUser(login.UserName, login.Password))
                 {
                     FormsAuthentication.SetAuthCookie(login.UserName, login.RememberMe);
-               /*     if (Url.IsLocalUrl(returnUrl))
+                    if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
                     else
-                    {*/
+                    {
                         return RedirectToAction("Index", "HR");
-                   // }
+                    }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Неправильный пароль или логин");
+                    ModelState.AddModelError("", "Incorrect login or password");
                 }
             }
             return View(login);
         }
 
-        private bool ValidateUser(string login, string password)
-        {
-            bool isValid = false;
-
-            using (EmployersContext _db = new EmployersContext())
-            {
-                try
-                {
-                    Employer user = (from u in _db.Employers
-                                     where u.Login == login && u.Password == password
-                                 select u).FirstOrDefault();
-
-                    if (user != null)
-                    {
-                        isValid = true;
-                    }
-                }
-                catch
-                {
-                    isValid = false;
-                }
-            }
-            return isValid;
-        }
 
         public ActionResult Logout()
         {

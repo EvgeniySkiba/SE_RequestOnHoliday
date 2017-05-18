@@ -1,44 +1,39 @@
 ﻿
-@model SE_RequestOnHoliday.ViewModel.ChangeStatus
+@using SE_RequestOnHoliday.Repository.DTO;
+@model RestDTO
 
 
 
-@{
-    ViewBag.Title = "ChangeStatus";
-}
+    @{
+        ViewBag.Title = "ChangeStatus";
+    }
 
-<h2>ChangeStatus</h2>
+    <h2>ChangeStatus</h2>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Change Status</legend>
+        <fieldset>
+            <legend>Change Status</legend>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ChangeStatusId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ChangeStatusId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ChangeStatusId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <input type="hidden" id="restID" name="restID" value="@Model.RestId">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Status,
+            <div class="form-group">
+                @Html.LabelFor(model => model.StatusId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.StatusId,
                 Enum.GetNames(typeof(SE_RequestOnHoliday.Enums.RestType)).Select(e => new SelectListItem { Text = e, Value = ((int)Enum.Parse(typeof(SE_RequestOnHoliday.Enums.RestType), e)).ToString() })
-                ,"", new { htmlAttributes = new { @class = "form-control" } })
+                , "", new { htmlAttributes = new { @class = "form-control" } })
 
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }

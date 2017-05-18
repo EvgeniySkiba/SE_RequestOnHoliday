@@ -6,13 +6,15 @@ using System.Web;
 
 namespace SE_RequestOnHoliday.ViewModel
 {
-    public class LoginVM
+    public class LoginDTO
     {
         [Required]
+        [Display(Name = "Логин")]
         public string UserName{ get; set; }
 
         [Required]
         [MinLength(4)]
+        [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

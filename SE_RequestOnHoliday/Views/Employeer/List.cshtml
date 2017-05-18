@@ -8,39 +8,36 @@
 <h2>List</h2>
 
 <p>
-    @Html.ActionLink("Create New","Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>ID</th>
             <th>First Name</th>
-            <th>Last name</th>
-            <th>Requsest</th>
+            <th>Last name</th>           
             <th>Details</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
     </thead>
-    
+
     @foreach (SE_RequestOnHoliday.ViewModel.EmployeerVM b in Model)
     {
         <tr>
             <td>@b.Id</td>
             <td>@b.FirstName</td>
-            <td>@b.LastName</td>
-            <td>get Request </td>
-            <td>Details</td>
+            <td>@b.LastName</td>         
+            <td>@Html.ActionLink("Details", "Details", new { id = b.Id })</td>
             <td>
-                @Html.ActionLink("Edit","Edit", new { id= b.Id })
-                </td>
+                @Html.ActionLink("Edit", "Edit", new { id = b.Id })
+            </td>
             <td>
                 @Html.ActionLink("Delete", "Delete", new { id = b.Id })
             </td>
-           
+
         </tr>
     }
 </table>
-
 
 
