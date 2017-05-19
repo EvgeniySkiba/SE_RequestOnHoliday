@@ -170,7 +170,7 @@ namespace SE_RequestOnHoliday.Controllers
             restRepo.create(EmployerID, usersRequestsDTO.StartDate, usersRequestsDTO.EndDate);
             restRepo.saveChanges();
 
-            return View("List");
+            return RedirectToAction("List");
         }
 
         [HttpPost]

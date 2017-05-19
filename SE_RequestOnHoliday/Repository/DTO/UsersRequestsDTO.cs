@@ -13,13 +13,14 @@ namespace SE_RequestOnHoliday.Repository.DTO
         [DataType(DataType.Date)]
         [Display(Name = "Начало отпуска")]
         [Required(ErrorMessage = "Поле должно быть установлено")]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
+
         public DateTime StartDate { get; set; }
 
         [Display(Name = "Окончание отпуска")]
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime EndDate { get; set; }
     }
 }
