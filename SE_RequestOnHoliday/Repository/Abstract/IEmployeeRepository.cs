@@ -15,6 +15,8 @@ namespace SE_RequestOnHoliday.Repository.Abstract
 
         EmployeerDTO get(int id);
 
+        EmployeerDTO getByLogin(string login);
+
         void edit(EmployeerDTO employyer);
 
         void delete(int id);
@@ -26,6 +28,7 @@ namespace SE_RequestOnHoliday.Repository.Abstract
         void create(EmployeerDTO empployyer);
 
         void save();
+
 
     }
 }

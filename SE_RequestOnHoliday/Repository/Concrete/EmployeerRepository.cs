@@ -30,9 +30,6 @@ namespace SE_RequestOnHoliday.Repository.Concrete
 
         public void delete(int id)
         {
-            //  Employer empl = new Employer { Id = id };
-            //  db.Entry(b).State = EntityState.Deleted;
-
             Employer empl = db.Employers.FirstOrDefault(i => i.Id == id);
             db.Employers.Remove(empl);         
         }
@@ -56,6 +53,21 @@ namespace SE_RequestOnHoliday.Repository.Concrete
         public bool exist(int id)
         {
             return db.Employers.FirstOrDefault(p => p.Id == id) != null;
+        }
+
+        public EmployeerDTO getByLogin(string login)
+        {
+            return (from p in db.Employers
+                    where p.Login == login
+                    select new EmployeerDTO
+                    {
+                        Id = p.Id,
+                        FirtstName = p.FirtstName,
+                        LastName = p.LastName,
+                        Login = p.Login,
+                        Password = p.Password,
+                        RoleId = p.RoleId
+                    }).FirstOrDefault();
         }
 
         public bool isLoginAvailable(string login)

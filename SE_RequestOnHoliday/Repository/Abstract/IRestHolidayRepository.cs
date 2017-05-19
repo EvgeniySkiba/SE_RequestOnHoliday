@@ -19,6 +19,8 @@ namespace SE_RequestOnHoliday.Repository.Abstract
 
         IEnumerable<RestVM> listByEmployer(int employeerID);
 
+        IEnumerable<RestVM> listByEmployer(string login);
+
         IEnumerable<RestVM> listByEmployer(int employeerID, int startPosition, int total);
 
         RestDTO get(int restId);

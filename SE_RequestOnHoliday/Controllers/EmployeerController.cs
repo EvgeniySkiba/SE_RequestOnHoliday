@@ -10,6 +10,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using System.Web.Security;
 
 namespace SE_RequestOnHoliday.Controllers
 {
@@ -23,7 +26,7 @@ namespace SE_RequestOnHoliday.Controllers
 
         public EmployeerController()
         {
-            repo = new EmployeerRepository();           
+            repo = new EmployeerRepository();
             restRepo = new RestHolidayRepository();
             restTypeRepo = new RestTypeRepository();
             rolesRepo = new RoleRepository();
@@ -35,6 +38,22 @@ namespace SE_RequestOnHoliday.Controllers
         {
             IEnumerable<EmployeerVM> entries = repo.getAll();
             return View(entries);
+        }
+
+
+        public ActionResult Index()
+        {
+            string cookieName = FormsAuthentication.FormsCookieName; //Find cookie name
+            HttpCookie authCookie = HttpContext.Request.Cookies[cookieName]; //Get the cookie by it's name
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value); //Decrypt it
+            string login = ticket.Name; //You have the UserName!
+
+            EmployeerDTO empl = repo.getByLogin(login);      
+            ViewBag.EmployeerID = empl.Id;
+
+            IEnumerable<RestVM> entries = restRepo.listByEmployer(login);
+            return View(entries);
+
         }
 
 
@@ -96,7 +115,7 @@ namespace SE_RequestOnHoliday.Controllers
             var empl = repo.get(id);
 
             SelectList roles = new SelectList(rolesRepo.getAll(), "id", "name", null);
-            ViewBag.Role = roles;           
+            ViewBag.Role = roles;
 
             if (empl == null)
                 return HttpNotFound();

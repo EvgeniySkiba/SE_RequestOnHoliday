@@ -43,7 +43,7 @@ namespace SE_RequestOnHoliday.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "HR");
+                        return RedirectToAction("Index", "Employeer");
                     }
                 }
                 else

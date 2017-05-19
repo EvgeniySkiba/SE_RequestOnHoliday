@@ -17,14 +17,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Запросы на отпуск", "Index", "HR", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Мои заявки", "Index", "Employeer", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Сотрудники", "List", "Employeer")</li>
-                    <li>@Html.ActionLink("About", "About", "HR")</li>
-                  
+                <ul class="nav navbar-nav">                 
+                    @if (HttpContext.Current.User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Заявки на согласовании", "About", "HR")</li>
+                        <li>@Html.ActionLink("Все заявки", "List", "Employeer", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
                 </ul>
+                <span style="float:right;">
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Log out", "Logout", "Auth");
+                    }
+                </span>
             </div>
         </div>
     </div>
