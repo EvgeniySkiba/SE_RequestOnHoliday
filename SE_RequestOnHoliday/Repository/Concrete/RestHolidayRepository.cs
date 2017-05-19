@@ -15,13 +15,17 @@ namespace SE_RequestOnHoliday.Repository.Concrete
     {
         private EmployersContext db = new EmployersContext();
 
-        public void create(int employerID, DateTime startDate, DateTime endDate)
+        public void create(int employerID, DateTime startDate, DateTime endDate, int restTypeId)
         {
+            RestType restType = db.RestTypes.FirstOrDefault(i=>i.Id == restTypeId);
+            if (restType == null)
+                return;
+
             Employer empl = db.Employers.FirstOrDefault(p => p.Id == employerID);
 
             if (empl != null)
             {
-                Rest rest = new Rest() { StartDate = startDate, EndDate = endDate, Status = (int)Status.NotApplied };
+                Rest rest = new Rest() { StartDate = startDate, EndDate = endDate, Status = (int)Status.NotApplied , RestType =restType};
                 rest.Employers.Add(empl);
                 db.Rests.Add(rest);
             }
@@ -66,22 +70,10 @@ namespace SE_RequestOnHoliday.Repository.Concrete
                           StartDate = m.StartDate,
                           EndDate = m.EndDate,
                           Name = string.Concat(emp.FirtstName, " ", emp.LastName),
-                          Status = (Status)m.Status
+                          Status = (Status)m.Status,
+                          RestType = m.RestType.Name
                       });
 
-           /* IEnumerable<RestVM> result = db.Rests.Join(db.Employers, // второй набор
-               p => p.Id, // свойство-селектор объекта из первого набора
-               c => c.Id, // свойство-селектор объекта из второго набора
-
-               (p, c) => new RestVM()// результат
-               {
-                   Id = p.Id,
-                   StartDate = p.StartDate,
-                   EndDate = p.EndDate,
-                   Name = string.Concat(c.FirtstName, " ", c.LastName),
-                   Status = (Status)p.Status
-
-               });*/
 
             return result;
         }

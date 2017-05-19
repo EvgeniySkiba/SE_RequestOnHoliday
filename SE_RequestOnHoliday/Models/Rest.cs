@@ -25,6 +25,10 @@ namespace SE_RequestOnHoliday.Models
 
         public int Status { get; set; }
 
+        public int RestTypeId { get; set; }
+
+        public virtual RestType RestType { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employer> Employers { get; set; }
     }

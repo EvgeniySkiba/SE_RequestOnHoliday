@@ -19,12 +19,14 @@ namespace SE_RequestOnHoliday.Controllers
         IEmployeeRepository repo;
         IRoleRepository rolesRepo;
         IRestHolidayRepository restRepo;
+        IRestTypeRepository restTypeRepo;
 
         public EmployeerController()
         {
-            repo = new EmployeerRepository();
-            rolesRepo = new RoleRepository();
+            repo = new EmployeerRepository();           
             restRepo = new RestHolidayRepository();
+            restTypeRepo = new RestTypeRepository();
+            rolesRepo = new RoleRepository();
         }
 
         EmployersContext db = new EmployersContext();
@@ -43,7 +45,7 @@ namespace SE_RequestOnHoliday.Controllers
             return View();
         }
 
-        void bindRolesList(RoleDTO selectedRole)
+        void bindRolesList(RestTypeDTO selectedRole)
         {
             SelectList roles = new SelectList(rolesRepo.getAll(), "id", "name", selectedRole);
             ViewBag.Role = roles;
@@ -93,9 +95,8 @@ namespace SE_RequestOnHoliday.Controllers
 
             var empl = repo.get(id);
 
-            var role = rolesRepo.get(empl.RoleId);
-
-            bindRolesList(role);
+            SelectList roles = new SelectList(rolesRepo.getAll(), "id", "name", null);
+            ViewBag.Role = roles;           
 
             if (empl == null)
                 return HttpNotFound();
@@ -123,7 +124,7 @@ namespace SE_RequestOnHoliday.Controllers
 
                 TempData["message"] = "Some message";
                 return RedirectToAction("List");
-            }         
+            }
 
 
             TempData["message"] = "Some error message";
@@ -154,23 +155,35 @@ namespace SE_RequestOnHoliday.Controllers
 
         public ActionResult Apply(int? id)
         {
+            if (id == null)
+                return HttpNotFound();
 
             string controller = RouteData.Values["id"].ToString();
+
+            SelectList statusesList = new SelectList(restTypeRepo.list(), "Id", "Name");
+            ViewBag.StatusesList = statusesList;
 
             if (id == null)
                 return HttpNotFound();
 
-            ViewBag.ID  = id.ToString();
+            ViewBag.ID = id.ToString();
             return View();
         }
 
         [HttpPost]
         public ActionResult Apply(int EmployerID, UsersRequestsDTO usersRequestsDTO)
         {
-            restRepo.create(EmployerID, usersRequestsDTO.StartDate, usersRequestsDTO.EndDate);
-            restRepo.saveChanges();
+            if (ModelState.IsValid)
+            {
+                restRepo.create(EmployerID, usersRequestsDTO.StartDate, usersRequestsDTO.EndDate, usersRequestsDTO.RestTypeId);
+                restRepo.saveChanges();
 
-            return RedirectToAction("List");
+                return RedirectToAction("List");
+            }
+
+            SelectList statusesList = new SelectList(restTypeRepo.list(), "Id", "Name");
+            ViewBag.StatusesList = statusesList;
+            return View();
         }
 
         [HttpPost]
@@ -223,7 +236,7 @@ namespace SE_RequestOnHoliday.Controllers
             if (empl == null)
                 return HttpNotFound();
 
-            repo.delete(empl.Id);          
+            repo.delete(empl.Id);
             db.SaveChanges();
 
             return RedirectToAction("List");

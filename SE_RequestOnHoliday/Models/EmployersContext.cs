@@ -24,6 +24,11 @@ namespace SE_RequestOnHoliday.Models
                 .WithMany(e => e.Employers)
                 .Map(m => m.ToTable("EmployeesRest").MapLeftKey("EmployerID").MapRightKey("RestID"));
 
+            modelBuilder.Entity<RestType>()
+                .HasMany(e => e.Rests)
+                .WithRequired(e => e.RestType)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.Employers)
                 .WithRequired(e => e.Role)

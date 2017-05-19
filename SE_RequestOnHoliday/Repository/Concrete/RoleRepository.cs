@@ -8,7 +8,6 @@ using SE_RequestOnHoliday.Models;
 
 namespace SE_RequestOnHoliday.Repository.Concrete
 {
-
     public class RoleRepository : IRoleRepository
     {
         private EmployersContext db = new EmployersContext();

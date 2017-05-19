@@ -17,9 +17,9 @@ CREATE TABLE [dbo].[RestType]
 	[Name] NVARCHAR (50) NOT NULL
 )
 
-insert into Roles values ('Ежегодный')
-insert into Roles values ('Внеочередной')
-insert into Roles values ('За свой счет')
+insert into RestType values ('Ежегодный')
+insert into RestType values ('Внеочередной')
+insert into RestType values ('За свой счет')
 
 CREATE TABLE [dbo].[Employer]
 (
@@ -38,7 +38,9 @@ CREATE TABLE [dbo].[Rest]
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [StartDate] SMALLDATETIME NOT NULL, 
     [EndDate] SMALLDATETIME NOT NULL, 
-    [Status] INT NOT NULL 
+    [Status] INT NOT NULL ,
+	[RestTypeId] INT NOT NULL,
+	CONSTRAINT [FK_Rest_TypeId] Foreign Key ([RestTypeId]) References [RestType](Id),
 )
 
 
@@ -70,6 +72,10 @@ GO
 ALTER TABLE [dbo].[EmployeesRest] CHECK CONSTRAINT [FK_EmployeesRest_Rest]
 GO
 
+
+
+insert into Employer  ([FirtstName], [LastName], [Login],[Password],RoleID) values
+('admin','admin','admin','31323334',1)
 
 -------------------------------
 -- update-package -reinstall

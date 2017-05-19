@@ -9,7 +9,7 @@ namespace SE_RequestOnHoliday.Repository.Abstract
 {
     public interface IRestHolidayRepository
     {
-        void create(int employerID, DateTime startDate, DateTime endDate);
+        void create(int employerID, DateTime startDate, DateTime endDate, int restTypeId);
 
         void changeStatus(int restID, int statusID);
 

@@ -1,4 +1,5 @@
 ﻿using SE_RequestOnHoliday.Enums;
+using SE_RequestOnHoliday.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace SE_RequestOnHoliday.ViewModel
 
         [Display(Name = "Статус")]
         public Status Status { get; set; }
+
+        public String RestType { get; set; }
 
     }
 }

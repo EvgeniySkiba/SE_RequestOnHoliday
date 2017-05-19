@@ -8,10 +8,10 @@ namespace SE_RequestOnHoliday.Enums
 {
     public enum Status:int
     {
-        [Display(Name = "Утверждено ")]
+        [Display(Name = "Утверждено")]
         Applied = 2,
 
         [Display(Name = "Не утверждено")]
-        NotApplied =2 
+        NotApplied =1 
     }
 }

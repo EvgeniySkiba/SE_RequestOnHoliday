@@ -18,10 +18,10 @@ namespace SE_RequestOnHoliday.Controllers
     public class HRController : Controller
     {
         IRestHolidayRepository restRepo;
-
+     
         public HRController()
         {
-            restRepo = new RestHolidayRepository();
+            restRepo = new RestHolidayRepository();            
         }
 
         private EmployersContext db = new EmployersContext();

@@ -163,7 +163,6 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\EmployeerController.cs" />
     <Compile Include="Controllers\HRController.cs" />
-    <Compile Include="Enums\RestType.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,17 +178,20 @@
     <Compile Include="Repository\Abstract\IAuthRepository.cs" />
     <Compile Include="Repository\Abstract\IEmployeeRepository.cs" />
     <Compile Include="Repository\Abstract\IRestHolidayRepository.cs" />
+    <Compile Include="Repository\Abstract\IRestTypeRepository.cs" />
     <Compile Include="Repository\Abstract\IRoleRepository.cs" />
     <Compile Include="Repository\Concrete\AuthRepository.cs" />
     <Compile Include="Repository\Concrete\EmployeerRepository.cs" />
     <Compile Include="Repository\Concrete\RestHolidayRepository.cs" />
+    <Compile Include="Repository\Concrete\RestTypeRepository.cs" />
     <Compile Include="Repository\Concrete\RoleRepository.cs" />
     <Compile Include="Repository\DTO\EmployeerRestDTO.cs" />
     <Compile Include="Repository\DTO\RestDTO.cs" />
+    <Compile Include="Repository\DTO\RoleDTO.cs" />
     <Compile Include="Repository\DTO\UsersRequestsDTO.cs" />
     <Compile Include="Repository\DTO\EmployeerDTO.cs" />
     <Compile Include="Repository\DTO\EmployersListItemDTO.cs" />
-    <Compile Include="Repository\DTO\RoleDTO.cs" />
+    <Compile Include="Repository\DTO\RestTypeDTO.cs" />
     <Compile Include="ViewModel\EmployeerVM.cs" />
     <Compile Include="Repository\DTO\LoginDTO.cs" />
     <Compile Include="ViewModel\RestVM.cs" />
@@ -301,6 +303,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
